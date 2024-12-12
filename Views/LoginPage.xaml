@@ -14,8 +14,8 @@
     </VerticalStackLayout>
 </ContentPage>
 
-    # Data binding missing
-    # Source: https://learn.microsoft.com/en-us/training/modules/create-user-interface-xaml/2-xaml-benefits
+<!-- Data binding missing --> 
+<!-- Source: https://learn.microsoft.com/en-us/training/modules/create-user-interface-xaml/2-xaml-benefits -->
     
  
     
