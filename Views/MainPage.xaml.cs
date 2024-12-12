@@ -14,6 +14,6 @@ public partial class MainPage : ContentPage
     private void OnCounterClicked(object sender, EventArgs e)
     {
         count++;
-        CounterLabel.Text = $"Current counter: {count}";
+       // CounterLabel.Text = $"Current counter: {count}";
     }
 }

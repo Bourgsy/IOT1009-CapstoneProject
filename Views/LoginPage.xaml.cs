@@ -9,7 +9,7 @@ public partial class LoginPage : ContentPage
 		InitializeComponent();
 	}
 
-	private void OnLoginClicked(object sender, EventArgs e)
+	private void LoginButton_Clicked(object sender, EventArgs e)
 	{
 		Debug.WriteLine("Clicked");
 		// Logic placeholder
