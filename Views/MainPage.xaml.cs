@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 
-namespace NicksApp;
+namespace NicksApp.Views;
 
 public partial class MainPage : ContentPage
 {
