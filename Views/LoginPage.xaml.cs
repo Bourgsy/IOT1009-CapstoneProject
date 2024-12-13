@@ -12,9 +12,17 @@ namespace NicksApp.Views
 		{
 			InitializeComponent();
 		}
-        private void LoginButton_Clicked(object sender, EventArgs e)
+        private async void LoginButton_Clicked(object sender, EventArgs e)
         {
-
+            if (UsernameEntry.string == "admin"  && PasswordEntry.string == "admin")
+            {
+                await Naviation.PushAsync(new MainPage());
+            }
+            else 
+            {
+                await DisplayAlert("Error", "Invalid", "ok");
+            }
+     
         }
     }
 }
