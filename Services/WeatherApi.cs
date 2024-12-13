@@ -22,26 +22,29 @@ namespace NicksApp.Services
         public async Task<List<WeatherItem>> RefreshDataAsync()
         {
             Items = new List<WeatherItem>();
-            Uri uri = new Uri($"https://api.openweathermap.org/data/2.5/weather?q=Sudbury&appid=removed&units=metric");
+            Uri uri = new Uri($"https://api.openweathermap.org/data/2.5/weather?q=Sudbury&appid=b2de745f1814473af9ed2c6ac0c854ad&units=metric");
 
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(uri);
+                Debug.WriteLine(response.StatusCode);
                 if (response.IsSuccessStatusCode)
                 {
 
                     string content = await response.Content.ReadAsStringAsync();
-                
+                    Debug.WriteLine(content);
                     var weatherData = JsonSerializer.Deserialize<WeatherItem>(content, _serializerOptions);
 
-
-                    Items.Add(new WeatherItem
+                    if (weatherData != null && weatherData.Weather != null && weatherData.Weather.Any())
                     {
-                        ID = Guid.NewGuid().ToString(),
-                        Main = weatherData.Weather[0].Main,
-                        Description = weatherData.Weather[0].Description,
-                        Temperature = weatherData.Main.Temp
-                    });
+                        Items.Add(new WeatherItem
+                        {
+                            ID = Guid.NewGuid().ToString(),
+                            Main = weatherData.Weather[0].Main,
+                            Description = weatherData.Weather[0].Description,
+                            Temperature = weatherData.Main.Temp
+                        });
+                    }
                 }
             }
             catch (Exception ex)
