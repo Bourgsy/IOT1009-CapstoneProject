@@ -22,7 +22,7 @@ namespace NicksApp.Services
         public async Task<List<WeatherItem>> RefreshDataAsync()
         {
             Items = new List<WeatherItem>();
-            Uri uri = new Uri($"https://api.openweathermap.org/data/2.5/weather?q=Sudbury&appid=b2de745f1814473af9ed2c6ac0c854ad&units=metric");
+            Uri uri = new Uri($"https://api.openweathermap.org/data/2.5/weather?q=Sudbury&appid=removed&units=metric");
 
             try
             {

@@ -1,17 +1,22 @@
 using System.Diagnostics;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Xaml;
 
-namespace NicksApp.Views;
-
-public partial class LoginPage : ContentPage
+namespace NicksApp.Views
 {
-	public LoginPage()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class LoginPage : ContentPage
 	{
-		InitializeComponent();
-	}
 
-	private void LoginButton_Clicked(object sender, EventArgs e)
-	{
-		Debug.WriteLine("Clicked");
-		// Logic placeholder
+		public LoginPage()
+		{
+			InitializeComponent();
+		}
+
+		private void LoginButton_Clicked(object sender, EventArgs e)
+		{
+			Debug.WriteLine("Clicked");
+			// Logic placeholder
+		}
 	}
 }
