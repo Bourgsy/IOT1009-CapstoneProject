@@ -1,3 +1,4 @@
+using NicksApp.Models;
 using System.Diagnostics;
 using System.Text.Json;
 
@@ -7,7 +8,7 @@ namespace NicksApp.Services
     {
         HttpClient _client;
         JsonSerializerOptions _serializerOptions;
-        public List<WeatherItem> Items { get; private set; }  // Following their pattern
+        public List<WeatherItem>? Items { get; private set; }
 
         public WeatherApi()
         {
@@ -17,6 +18,7 @@ namespace NicksApp.Services
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 WriteIndented = true
             };
+            Items = new List<WeatherItem>();
         }
 
         public async Task<List<WeatherItem>> RefreshDataAsync()
@@ -33,16 +35,16 @@ namespace NicksApp.Services
 
                     string content = await response.Content.ReadAsStringAsync();
                     Debug.WriteLine(content);
-                    var weatherData = JsonSerializer.Deserialize<WeatherItem>(content, _serializerOptions);
+                    var weatherData = JsonSerializer.Deserialize<WeatherData>(content, _serializerOptions);
 
                     if (weatherData != null && weatherData.Weather != null && weatherData.Weather.Any())
                     {
                         Items.Add(new WeatherItem
                         {
                             ID = Guid.NewGuid().ToString(),
-                            Main = weatherData.Weather[0].Main,
+                            Condition = weatherData.Weather[0].Main,         
                             Description = weatherData.Weather[0].Description,
-                            Temperature = weatherData.Main.Temp
+                            Temperature = weatherData.Main.Temp              
                         });
                     }
                 }
