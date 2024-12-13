@@ -1,10 +1,14 @@
-﻿namespace NicksApp
+﻿using Microsoft.Maui.Controls.Xaml;
+
+namespace NicksApp
 {
-    public partial class AppShell : Shell
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class App : Application
     {
-        public AppShell()
+        public App()
         {
             InitializeComponent();
+            MainPage = new AppShell();
         }
     }
 }

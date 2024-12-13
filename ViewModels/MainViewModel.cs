@@ -8,5 +8,6 @@ namespace NicksApp.ViewModels
 {
     internal class MainViewModel
     {
+
     }
 }
