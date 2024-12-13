@@ -21,16 +21,28 @@
             FontSize="48"
             HorizontalOptions="Center" />
 
+        <Entry
+            x:Name="MoodEntry"
+            Placeholder="How do you feel today?"
+            PlaceholderColor="Gray"
+            Margin="0,20"/>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button 
+                Text="👍"
+                Clicked="OnThumbsUpClicked"
+                FontSize="24"/>
+
+            <Button 
+                Text="👎"
+                Clicked="OnThumbsDownClicked"
+                FontSize="24"/>
+        </HorizontalStackLayout>
+
         <Label 
-            x:Name="DescriptionLabel"
+            x:Name="ResultLabel"
             Text=""
             FontSize="20"
-            HorizontalOptions="Center" />
-
-        <Button 
-            x:Name="RefreshButton"
-            Text="Refresh Weather"
-            Clicked="OnRefreshClicked"
             HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

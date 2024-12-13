@@ -9,7 +9,7 @@ namespace NicksApp
         public App()
         {
             InitializeComponent();
-            MainPage = new Views.MainPage();
+            MainPage = new NavigationPage(new Views.LoginPage());
         }
     }
 }
