@@ -1,5 +1,6 @@
 using SQLite;
 using NicksApp.Models;
+using System.Diagnostics;
 
 namespace NicksApp.Services
 {
@@ -11,23 +12,38 @@ namespace NicksApp.Services
         {
             var dbPath = Path.Combine(FileSystem.AppDataDirectory, "moods.db");
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<MoodEntry>().Wait();
+            Task.Run(async () => await _database.CreateTableAsync<MoodEntry>()).Wait();
         }
 
         public async Task<int> SaveMoodAsync(MoodEntry mood)
         {
-            return await _database.InsertAsync(mood);
+            try
+            {
+                return await _database.InsertAsync(mood);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Database Error: {ex.Message}");
+                throw;
+            }
         }
 
         public async Task<double> GetGoodMoodPercentageAsync()
         {
-            var today = DateTime.Today;
-            var moods = await _database.Table<MoodEntry>()
-                .Where(m => m.Timestamp.Date == today)
-                .ToListAsync();
+            try
+            {
+                var today = DateTime.Today;
+                var moods = await _database.Table<MoodEntry>().ToListAsync();
+                var todayMoods = moods.Where(m => m.Timestamp.Date == today).ToList();
 
-            if (!moods.Any()) return 0;
-            return (double)moods.Count(m => m.IsGood) / moods.Count * 100;
+                if (!todayMoods.Any()) return 0;
+                return (double)todayMoods.Count(m => m.IsGood) / todayMoods.Count * 100;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Database Error: {ex.Message}");
+                return 0;
+            }
         }
     }
 }

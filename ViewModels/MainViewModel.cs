@@ -22,6 +22,18 @@ namespace NicksApp.ViewModels
         [ObservableProperty]
         private string temperature;
 
+        [RelayCommand]
+        private async Task ThumbsUp()
+        {
+            await SaveMood(true);
+        }
+
+        [RelayCommand]
+        private async Task ThumbsDown()
+        {
+            await SaveMood(false);
+        }
+
         public MainViewModel(DatabaseService database, WeatherApi weatherApi)
         {
             _database = database;
@@ -40,7 +52,6 @@ namespace NicksApp.ViewModels
             }
         }
 
-        [RelayCommand]
         private async Task SaveMood(bool isGood)
         {
             if (string.IsNullOrWhiteSpace(MoodText))
