@@ -1,25 +1,23 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace NicksApp
+﻿using NicksApp.Services;
+using NicksApp.ViewModels;
+public static class MauiProgram
 {
-    public static class MauiProgram
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+        builder.Services.AddSingleton<DatabaseService>();
+        builder.Services.AddSingleton<WeatherApi>();
+        builder.Services.AddTransient<LoginViewModel>();
+        builder.Services.AddTransient<MainViewModel>();
 
-            return builder.Build();
-        }
+        return builder.Build();
     }
 }

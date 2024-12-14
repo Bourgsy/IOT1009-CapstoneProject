@@ -6,23 +6,11 @@ namespace NicksApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
-	{
-
-		public LoginPage()
-		{
-			InitializeComponent();
-		}
-        private async void OnLoginClicked(object sender, EventArgs e)
+    {
+        public LoginPage()
         {
-            if (UsernameEntry.Text == "admin"  && PasswordEntry.Text == "admin")
-            {
-                await Navigation.PushAsync(new MainPage());
-            }
-            else 
-            {
-                await DisplayAlert("Error", "Invalid", "ok");
-            }
-     
+            InitializeComponent();
+            BindingContext = new ViewModels.LoginViewModel(Navigation);
         }
     }
 }

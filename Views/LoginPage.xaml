@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:NicksApp.ViewModels"
              x:Class="NicksApp.Views.LoginPage">
 
     <VerticalStackLayout Spacing="25" Padding="30,0" VerticalOptions="Center">
@@ -10,23 +11,21 @@
             HorizontalOptions="Center" />
 
         <Entry 
-            x:Name="UsernameEntry"
+            Text="{Binding Username}"
             Placeholder="Username"
             PlaceholderColor="Gray"/>
 
         <Entry 
-            x:Name="PasswordEntry"
+            Text="{Binding Password}"
             Placeholder="Password"
             IsPassword="True"
             PlaceholderColor="Gray"/>
 
         <Button 
-            x:Name="LoginButton"
             Text="Login"
-            Clicked="OnLoginClicked"/>
+            Command="{Binding LoginCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
-    
  
     
     

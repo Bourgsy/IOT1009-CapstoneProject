@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:NicksApp.ViewModels"
              x:Class="NicksApp.Views.MainPage">
 
     <VerticalStackLayout Spacing="20" Padding="20">
@@ -10,19 +11,17 @@
             HorizontalOptions="Center" />
 
         <Label 
-            x:Name="WeatherConditionLabel"
-            Text="Loading..."
+            Text="{Binding WeatherCondition}"
             FontSize="24"
             HorizontalOptions="Center" />
 
         <Label 
-            x:Name="TemperatureLabel"
-            Text=""
+            Text="{Binding Temperature}"
             FontSize="48"
             HorizontalOptions="Center" />
 
         <Entry
-            x:Name="MoodEntry"
+            Text="{Binding MoodText}"
             Placeholder="How do you feel today?"
             PlaceholderColor="Gray"
             Margin="0,20"/>
@@ -30,18 +29,19 @@
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
             <Button 
                 Text="👍"
-                Clicked="OnThumbsUpClicked"
+                Command="{Binding SaveMoodCommand}"
+                CommandParameter="true"
                 FontSize="24"/>
 
             <Button 
                 Text="👎"
-                Clicked="OnThumbsDownClicked"
+                Command="{Binding SaveMoodCommand}"
+                CommandParameter="false"
                 FontSize="24"/>
         </HorizontalStackLayout>
 
         <Label 
-            x:Name="ResultLabel"
-            Text=""
+            Text="{Binding ResultText}"
             FontSize="20"
             HorizontalOptions="Center" />
     </VerticalStackLayout>
