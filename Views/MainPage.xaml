@@ -28,16 +28,14 @@
 
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
             <Button 
-                Text="👍"
-                Command="{Binding SaveMoodCommand}"
-                CommandParameter="true"
-                FontSize="24"/>
+            Text="👍"
+            Command="{Binding SaveMoodCommand}"
+            CommandParameter="{x:Static x:Boolean.True}"/>
 
             <Button 
-                Text="👎"
-                Command="{Binding SaveMoodCommand}"
-                CommandParameter="false"
-                FontSize="24"/>
+            Text="👎"
+            Command="{Binding SaveMoodCommand}"
+            CommandParameter="{x:Static x:Boolean.False}"/> 
         </HorizontalStackLayout>
 
         <Label 
