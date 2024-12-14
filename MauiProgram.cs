@@ -1,5 +1,8 @@
 ﻿using NicksApp.Services;
 using NicksApp.ViewModels;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using NicksApp;
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
