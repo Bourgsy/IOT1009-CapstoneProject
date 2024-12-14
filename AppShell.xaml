@@ -6,7 +6,6 @@
     xmlns:views="clr-namespace:NicksApp.Views"
     Title="NicksApp">
     
-    <!-- .FlyoutBehavior="Disabled" -->
     <ShellContent
         ContentTemplate="{DataTemplate views:LoginPage}"
         Route="LoginPage" />
